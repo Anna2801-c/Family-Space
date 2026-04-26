@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<title>Завдання 7</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Georgia, serif;
+    background: radial-gradient(circle at top, #3b1d5c, #08030f 75%);
+    color: #ffe08a;
+}
+
+.container {
+    width: 900px;
+    margin: 20px 0 0 20px;
+    padding: 30px;
+    border-radius: 18px;
+    background: rgba(18, 8, 35, 0.92);
+    box-shadow: 0 0 35px rgba(255, 215, 100, 0.5);
+}
+
+h1 {
+    text-align: center;
+    font-size: 38px;
+    margin: 0 0 25px;
+    text-shadow: 0 0 15px gold;
+}
+
+.form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 25px;
+}
+
+.field {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.field label {
+    width: 190px;
+    font-size: 18px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.field input {
+    width: 210px;
+    padding: 9px;
+    font-size: 20px;
+    border: none;
+    border-radius: 8px;
+}
+
+.question {
+    text-align: center;
+    font-size: 25px;
+    margin: 28px 0 16px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+    display: none;
+}
+
+.buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.choice {
+    width: 155px;
+    padding: 12px;
+    border: 2px solid #ffd76a;
+    border-radius: 10px;
+    background: #1b0d31;
+    color: #ffd76a;
+    text-align: center;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.3s;
+}
+
+.choice img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 8px;
+    border-radius: 6px;
+}
+
+#gryff:checked ~ .buttons label[for="gryff"],
+#slyth:checked ~ .buttons label[for="slyth"],
+#raven:checked ~ .buttons label[for="raven"],
+#huff:checked ~ .buttons label[for="huff"] {
+    background: #ffd76a;
+    color: #1b0d31;
+    box-shadow: 0 0 25px #ffd76a;
+    transform: scale(1.05);
+}
+
+.result-btn {
+    display: block;
+    width: 300px;
+    margin: 28px auto 0;
+    padding: 14px;
+    border: 2px solid #ffd76a;
+    border-radius: 10px;
+    background: #24103f;
+    color: #ffd76a;
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.result-btn:hover {
+    background: #ffd76a;
+    color: #1b0d31;
+    box-shadow: 0 0 25px #ffd76a;
+}
+
+.result-btn img {
+    width: 150px;
+    height: 100px;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 10px;
+    border-radius: 6px;
+}
+
+.result {
+    display: none;
+    width: 80%;
+    margin: 25px auto 0;
+    padding: 24px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #fff0c2, #f5d77a);
+    color: #2c1800;
+    text-align: center;
+    font-size: 22px;
+    line-height: 1.5;
+    box-shadow: 0 0 25px rgba(255, 215, 100, 0.7);
+}
+
+#gryff:checked ~ #show:checked ~ .results .res-gryff,
+#slyth:checked ~ #show:checked ~ .results .res-slyth,
+#raven:checked ~ #show:checked ~ .results .res-raven,
+#huff:checked ~ #show:checked ~ .results .res-huff {
+    display: block;
+}
+
+#show:checked ~ .results .no-choice {
+    display: block;
+}
+
+#gryff:checked ~ #show:checked ~ .results .no-choice,
+#slyth:checked ~ #show:checked ~ .results .no-choice,
+#raven:checked ~ #show:checked ~ .results .no-choice,
+#huff:checked ~ #show:checked ~ .results .no-choice {
+    display: none;
+}
+
+/* ноутбуки */
+@media only screen and (max-width: 1224px) {
+    .container {
+        width: 80%;
+    }
+
+    .form {
+        flex-direction: column;
+    }
+
+    .field {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .field:nth-of-type(5),
+    .result-btn {
+        display: none;
+    }
+
+    .field label,
+    .field input,
+    .choice {
+        font-size: 16px;
+    }
+}
+
+/* iPad */
+@media only screen and (max-width: 1024px) {
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .field label,
+    .field input,
+    .choice {
+        font-size: 10px;
+    }
+
+    .choice img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .result-btn {
+    display: block;
+}
+
+    label[for="gryff"] img { content: url("images/hat1.png"); }
+    label[for="slyth"] img { content: url("images/hat2.png"); }
+    label[for="raven"] img { content: url("images/hat3.png"); }
+    label[for="huff"] img { content: url("images/hat4.png"); }
+}
+
+/* смартфони */
+@media only screen and (max-width: 480px) {
+    .container {
+        width: auto;
+        margin: 10px;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 25px;
+    }
+
+    .field:first-child,
+    .choice:first-of-type {
+        display: none;
+    }
+
+    .field label,
+    .field input,
+    .choice {
+        font-size: 12px;
+    }
+
+    .field input {
+        width: 90%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Чарівний розподіл на факультет</h1>
+
+<div class="form">
+    <div class="field">
+        <label>Твоє ім’я:</label>
+        <input type="text">
+    </div>
+
+    <div class="field">
+        <label>Твоя головна якість:</label>
+        <input type="text">
+    </div>
+
+    <div class="field">
+        <label>Чого ти боїшся?</label>
+        <input type="text">
+    </div>
+
+    <div class="field">
+        <label>Твоя мрія:</label>
+        <input type="text">
+    </div>
+
+    <div class="field">
+        <label>Улюблений колір:</label>
+        <input type="text">
+    </div>
+</div>
+
+<p class="question">Куди ти хочеш потрапити?</p>
+
+<input type="radio" name="house" id="gryff">
+<input type="radio" name="house" id="slyth">
+<input type="radio" name="house" id="raven">
+<input type="radio" name="house" id="huff">
+
+<div class="buttons">
+    <label class="choice" for="gryff">
+        <img src="images/lion.png" alt="Грифіндор">
+        Грифіндор
+    </label>
+
+    <label class="choice" for="slyth">
+        <img src="images/snake.png" alt="Слизерин">
+        Слизерин
+    </label>
+
+    <label class="choice" for="raven">
+        <img src="images/eagle.png" alt="Когтевран">
+        Когтевран
+    </label>
+
+    <label class="choice" for="huff">
+        <img src="images/badger.png" alt="Пуфендуй">
+        Пуфендуй
+    </label>
+</div>
+
+<input type="checkbox" id="show">
+
+<label class="result-btn" for="show">
+    <img src="images/hat.png" alt="Шляпа">
+    Дізнатися результат
+</label>
+
+<div class="results">
+
+    <div class="result res-gryff">
+        ✨ Ти обрала <b>Грифіндор</b>, але шляпа пирхнула:<br>
+        «Хоробрість? Так, але спочатку дочитай інструкцію до кінця! Я бачу, що ти не просто біжиш у пригоди, а ще любиш подумати, проаналізувати й зробити красиво».<br><br>
+        🧠 Тебе розподілено у <b>Когтевран</b>.<br>
+        Тут твої ідеї, фантазія і розум точно не пропадуть.
+    </div>
+
+    <div class="result res-slyth">
+        ✨ Ти обрала <b>Слизерин</b> — і шляпа задоволено кивнула:<br>
+        «О, амбіції є, стиль є, план захоплення світу, мабуть, теж десь у нотатках. Ти знаєш, чого хочеш, і вмієш іти до мети».<br><br>
+        🐍 Тебе розподілено у <b>Слизерин</b>.<br>
+        Цього разу ти вгадала: шляпа навіть не сперечається.
+    </div>
+
+    <div class="result res-raven">
+        ✨ Ти обрала <b>Когтевран</b>, але шляпа задумалась:<br>
+        «Розум бачу, але душа просить тепла, печива і спокою. Тобі потрібне місце, де цінують доброту, терпіння і вміння підтримати інших».<br><br>
+        💛 Тебе розподілено у <b>Пуфендуй</b>.<br>
+        Там тобі буде затишно, м’яко і дуже по-домашньому.
+    </div>
+
+    <div class="result res-huff">
+        ✨ Ти обрала <b>Пуфендуй</b>, але шляпа вигукнула:<br>
+        «Ні-ні, у тобі більше вогню, ніж ти показуєш! Ти можеш сумніватися, але коли треба — стаєш сміливою і дуже сильною».<br><br>
+        🔥 Тебе розподілено у <b>Грифіндор</b>.<br>
+        Шляпа вирішила: твоя хоробрість просто ще чекає свого моменту.
+    </div>
+
+    <div class="result no-choice">
+        ❗ Ти ще не обрала факультет…<br>
+        Шляпа образилась, демонстративно мовчить і робить вигляд, що її тут взагалі немає 😭<br><br>
+        Спочатку обери факультет, а вже потім проси магічний результат.
+    </div>
+
+</div>
+
+</div>
+
+</body>
+</html>
